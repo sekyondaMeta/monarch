@@ -79,6 +79,10 @@ jobs:
         make html
         cd ..
 
+        # Organize Rust API documentation into dedicated folder in final build
+        mkdir -p docs/build/html/rust-api
+        cp -r target/doc/* docs/build/html/rust-api/
+
         # Copy documentation to artifact directory
         mkdir -p ${RUNNER_ARTIFACT_DIR}
         cp -r docs/build/html ${RUNNER_ARTIFACT_DIR}/docs-html
