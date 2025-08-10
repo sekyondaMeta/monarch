@@ -11,8 +11,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: Build Documentation
+  build-and-deploy:
+    name: Build and Deploy Documentation
     uses: pytorch/test-infra/.github/workflows/linux_job_v2.yml@main
     with:
       timeout: 120
@@ -20,6 +20,7 @@ jobs:
       gpu-arch-type: cuda
       gpu-arch-version: "12.6"
       submodules: recursive
+      upload-artifact: docs
       script: |
         # Source common setup functions
         source scripts/common-setup.sh
@@ -78,38 +79,12 @@ jobs:
         make html
         cd ..
 
-        # Upload documentation directly to Pages
-        cd docs/build
-        tar -czf ../../docs-artifact.tar.gz -C html .
-        cd ../..
-
-        # Copy to runner artifact directory for pytorch test-infra
+        # Copy documentation to artifact directory
         mkdir -p ${RUNNER_ARTIFACT_DIR}
-        cp docs-artifact.tar.gz ${RUNNER_ARTIFACT_DIR}/
-
-  upload:
-    needs: build
-    name: Upload Documentation to GitHub Pages
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: artifact
-          path: .
-
-      - name: Extract documentation
-        run: |
-          mkdir -p docs-html
-          tar -xzf docs-artifact.tar.gz -C docs-html
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs-html
+        cp -r docs/build/html ${RUNNER_ARTIFACT_DIR}/docs-html
 
   deploy:
-    needs: build
+    needs: build-and-deploy
     if: github.ref == 'refs/heads/main'
     permissions:
       pages: write
@@ -119,6 +94,17 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docs
+          path: .
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs-html
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
