@@ -55,7 +55,7 @@ jobs:
 
         # Generate documentation for all crates including CUDA-dependent ones
         # Exclude RDMA-dependent crates as they require libraries not available in CI
-        cargo doc --workspace --no-deps --exclude rdmaxcel-sys --exclude monarch_rdma
+        cargo doc --workspace --no-deps --exclude rdmaxcel-sys --exclude monarch_rdma --exclude monarch_extension
 
         # Ensure the target/doc directory exists in the expected location for Sphinx
         mkdir -p docs/source/target
