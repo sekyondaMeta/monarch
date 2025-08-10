@@ -53,9 +53,21 @@ jobs:
         export _GLIBCXX_USE_CXX11_ABI=1
         export CUDA_LIB_DIR=/usr/lib64
 
-        # Generate documentation for all crates including CUDA-dependent ones
-        # Exclude RDMA-dependent crates as they require libraries not available in CI
-        cargo doc --workspace --no-deps --exclude rdmaxcel-sys --exclude monarch_rdma --exclude monarch_extension
+        # Generate documentation for specific crates that will build successfully in CI
+        # Include CUDA-dependent crates while avoiding RDMA dependencies
+        cargo doc --no-deps \
+          -p hyperactor \
+          -p hyperactor_macros \
+          -p hyperactor_multiprocess \
+          -p hyperactor_mesh \
+          -p hyperactor_mesh_macros \
+          -p cuda-sys \
+          -p nccl-sys \
+          -p torch-sys \
+          -p monarch_tensor_worker \
+          -p controller \
+          -p hyper \
+          -p ndslice
 
         # Ensure the target/doc directory exists in the expected location for Sphinx
         mkdir -p docs/source/target
