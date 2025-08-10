@@ -78,20 +78,30 @@ jobs:
         make html
         cd ..
 
-        # Copy docs to expected artifact location
+        # Upload documentation directly to Pages
+        cd docs/build
+        tar -czf ../../docs-artifact.tar.gz -C html .
+        cd ../..
+
+        # Copy to runner artifact directory for pytorch test-infra
         mkdir -p ${RUNNER_ARTIFACT_DIR}
-        cp -r docs/build/html/* ${RUNNER_ARTIFACT_DIR}/
+        cp docs-artifact.tar.gz ${RUNNER_ARTIFACT_DIR}/
 
   upload:
     needs: build
-    name: Upload Documentation Artifact
+    name: Upload Documentation to GitHub Pages
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifact
+      - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
           name: artifact
-          path: docs-html
+          path: .
+
+      - name: Extract documentation
+        run: |
+          mkdir -p docs-html
+          tar -xzf docs-artifact.tar.gz -C docs-html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
