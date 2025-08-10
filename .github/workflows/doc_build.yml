@@ -54,7 +54,8 @@ jobs:
         export CUDA_LIB_DIR=/usr/lib64
 
         # Generate documentation for all crates including CUDA-dependent ones
-        cargo doc --workspace --no-deps
+        # Exclude rdmaxcel-sys as it requires RDMA libraries not available in CI
+        cargo doc --workspace --no-deps --exclude rdmaxcel-sys
 
         # Ensure the target/doc directory exists in the expected location for Sphinx
         mkdir -p docs/source/target
