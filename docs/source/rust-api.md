@@ -9,22 +9,7 @@ The Rust API documentation is automatically generated from the source code using
 
 You can access the full Rust API documentation here:
 
-<a href="../index.html" class="btn btn-primary">View Rust API Documentation</a>
-
-<script>
-// Check if the help.html file exists
-fetch('../index.html')
-  .then(response => {
-    if (!response.ok) {
-      // If the file doesn't exist, try a different path
-      document.querySelector('a[href="../index.html"]').href = './index.html';
-    }
-  })
-  .catch(error => {
-    // If there's an error, try a different path
-    document.querySelector('a[href="../index.html"]').href = './index.html';
-  });
-</script>
+<a href="target/doc/index.html" class="btn btn-primary">View Rust API Documentation</a>
 
 
 ## Key Modules
