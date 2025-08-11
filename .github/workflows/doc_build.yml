@@ -25,27 +25,22 @@ jobs:
         # Source common setup functions
         source scripts/common-setup.sh
 
-        # Setup test environment (provides basic dependencies)
-        setup_test_environment
+        # Setup build environment (conda + system deps + rust + build deps)
+        setup_build_environment
 
-        # Install build dependencies for bindgen/clang
-        if command -v yum >/dev/null 2>&1; then
-          yum install -y clang clang-devel llvm-devel
-        elif command -v dnf >/dev/null 2>&1; then
-          dnf install -y clang clang-devel llvm-devel
-        elif command -v apt-get >/dev/null 2>&1; then
-          apt-get update && apt-get install -y clang libclang-dev llvm-dev
-        fi
+        # Setup Tensor Engine
+        setup_tensor_engine
+
+        # Build the process allocator binary
+        build_process_allocator
 
         # Setup Python dependencies
         python -m pip install --upgrade pip
         pip install -r build-requirements.txt
         pip install -r docs/requirements.txt
 
-        # Setup Rust toolchain
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly
-        source ~/.cargo/env
-        rustup component add rustfmt clippy
+        # Install PyTorch with CUDA support (matching build-cuda.yml)
+        pip install --pre torch --index-url https://download.pytorch.org/whl/nightly/cu126
 
         # Set environment variables for CUDA build
         export USE_CUDA=1
@@ -54,21 +49,24 @@ jobs:
         export _GLIBCXX_USE_CXX11_ABI=1
         export CUDA_LIB_DIR=/usr/lib64
 
-        # Generate documentation for specific crates that will build successfully in CI
-        # Include CUDA-dependent crates while avoiding RDMA dependencies
+        # Generate documentation for ALL crates in the workspace
+        # Including CUDA and RDMA-dependent crates
         cargo doc --no-deps \
+          -p controller \
+          -p cuda-sys \
+          -p hyper \
           -p hyperactor \
           -p hyperactor_macros \
           -p hyperactor_multiprocess \
           -p hyperactor_mesh \
           -p hyperactor_mesh_macros \
-          -p cuda-sys \
-          -p nccl-sys \
-          -p torch-sys \
+          -p ndslice \
+          -p monarch_extension \
           -p monarch_tensor_worker \
-          -p controller \
-          -p hyper \
-          -p ndslice
+          -p monarch_rdma \
+          -p nccl-sys \
+          -p rdmaxcel-sys \
+          -p torch-sys
 
         # Ensure the target/doc directory exists in the expected location for Sphinx
         mkdir -p docs/source/target
