@@ -49,36 +49,17 @@ jobs:
         export _GLIBCXX_USE_CXX11_ABI=1
         export CUDA_LIB_DIR=/usr/lib64
 
-        # Generate documentation for ALL crates in the workspace
-        # Including CUDA and RDMA-dependent crates
-        cargo doc --no-deps \
-          -p controller \
-          -p cuda-sys \
-          -p hyper \
-          -p hyperactor \
-          -p hyperactor_macros \
-          -p hyperactor_multiprocess \
-          -p hyperactor_mesh \
-          -p hyperactor_mesh_macros \
-          -p ndslice \
-          -p monarch_extension \
-          -p monarch_tensor_worker \
-          -p monarch_rdma \
-          -p nccl-sys \
-          -p rdmaxcel-sys \
-          -p torch-sys
+        # Generate documentation for all workspace crates
+        cargo doc --workspace --no-deps
 
-        # Ensure the target/doc directory exists in the expected location for Sphinx
-        mkdir -p docs/source/target
+        # Prepare documentation structure for Sphinx and final output
+        mkdir -p docs/source/target docs/build/html/rust-api
         cp -r target/doc docs/source/target/
 
-        # Build Sphinx Docs
-        cd docs
-        make html
-        cd ..
+        # Build Sphinx documentation
+        cd docs && make html && cd ..
 
-        # Organize Rust API documentation into dedicated folder in final build
-        mkdir -p docs/build/html/rust-api
+        # Copy Rust API docs to final location
         cp -r target/doc/* docs/build/html/rust-api/
 
         # Copy documentation to artifact directory

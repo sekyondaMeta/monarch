@@ -2,18 +2,6 @@
 
 This page provides access to the Rust API documentation for Monarch.
 
-The Rust API documentation is automatically generated from the source code using Rustdoc.
-
-## Accessing the Rust API Documentation
-
-<div id="rust-api-links">
-    <p>You can access the full Rust API documentation here:</p>
-    <a id="main-api-link" href="rust-api/index.html" class="btn btn-primary">View Complete Rust API Documentation</a>
-    <p id="loading-message" style="display: none;">Loading API documentation...</p>
-</div>
-
-## Individual Crate Documentation
-
 The Monarch project consists of several Rust crates, each with specialized functionality:
 
 ### Core Framework
