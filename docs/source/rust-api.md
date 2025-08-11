@@ -29,10 +29,15 @@ The Monarch project consists of several Rust crates, each with specialized funct
 - <a id="link-torch-sys" href="rust-api/torch_sys/index.html">**torch-sys**</a><span id="desc-torch-sys"> - PyTorch C++ API bindings for Rust</span>
 - <a id="link-monarch_tensor_worker" href="rust-api/monarch_tensor_worker/index.html">**monarch_tensor_worker**</a><span id="desc-monarch_tensor_worker"> - High-performance tensor processing worker</span>
 
+### RDMA and High-Performance Networking
+- <a id="link-monarch_rdma" href="rust-api/monarch_rdma/index.html">**monarch_rdma**</a><span id="desc-monarch_rdma"> - Remote Direct Memory Access (RDMA) support for high-speed networking</span>
+- <a id="link-rdmaxcel-sys" href="rust-api/rdmaxcel_sys/index.html">**rdmaxcel-sys**</a><span id="desc-rdmaxcel-sys"> - Low-level RDMA acceleration bindings</span>
+
 ### System and Utilities
 - <a id="link-controller" href="rust-api/controller/index.html">**controller**</a><span id="desc-controller"> - System controller and orchestration</span>
 - <a id="link-hyper" href="rust-api/hyper/index.html">**hyper**</a><span id="desc-hyper"> - HTTP utilities and web service support</span>
 - <a id="link-ndslice" href="rust-api/ndslice/index.html">**ndslice**</a><span id="desc-ndslice"> - N-dimensional array slicing and manipulation</span>
+- <a id="link-monarch_extension" href="rust-api/monarch_extension/index.html">**monarch_extension**</a><span id="desc-monarch_extension"> - Python extension module for Monarch functionality</span>
 
 <!-- Static links are shown by default since documentation exists -->
 
