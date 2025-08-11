@@ -8,8 +8,8 @@ The Rust API documentation is automatically generated from the source code using
 
 <div id="rust-api-links">
     <p>You can access the full Rust API documentation here:</p>
-    <a id="main-api-link" href="rust-api/index.html" class="btn btn-primary" style="display: none;">View Complete Rust API Documentation</a>
-    <p id="loading-message">Loading API documentation...</p>
+    <a id="main-api-link" href="rust-api/index.html" class="btn btn-primary">View Complete Rust API Documentation</a>
+    <p id="loading-message" style="display: none;">Loading API documentation...</p>
 </div>
 
 ## Individual Crate Documentation
@@ -17,126 +17,24 @@ The Rust API documentation is automatically generated from the source code using
 The Monarch project consists of several Rust crates, each with specialized functionality:
 
 ### Core Framework
-- <a id="link-hyperactor" href="rust-api/hyperactor/index.html" style="display: none;">**hyperactor**</a><span id="desc-hyperactor" style="display: none;"> - Core actor framework for distributed computing</span>
-- <a id="link-hyperactor_macros" href="rust-api/hyperactor_macros/index.html" style="display: none;">**hyperactor_macros**</a><span id="desc-hyperactor_macros" style="display: none;"> - Procedural macros for the hyperactor framework</span>
-- <a id="link-hyperactor_multiprocess" href="rust-api/hyperactor_multiprocess/index.html" style="display: none;">**hyperactor_multiprocess**</a><span id="desc-hyperactor_multiprocess" style="display: none;"> - Multi-process support for hyperactor</span>
-- <a id="link-hyperactor_mesh" href="rust-api/hyperactor_mesh/index.html" style="display: none;">**hyperactor_mesh**</a><span id="desc-hyperactor_mesh" style="display: none;"> - Mesh networking for hyperactor clusters</span>
-- <a id="link-hyperactor_mesh_macros" href="rust-api/hyperactor_mesh_macros/index.html" style="display: none;">**hyperactor_mesh_macros**</a><span id="desc-hyperactor_mesh_macros" style="display: none;"> - Macros for hyperactor mesh functionality</span>
+- <a id="link-hyperactor" href="rust-api/hyperactor/index.html">**hyperactor**</a><span id="desc-hyperactor"> - Core actor framework for distributed computing</span>
+- <a id="link-hyperactor_macros" href="rust-api/hyperactor_macros/index.html">**hyperactor_macros**</a><span id="desc-hyperactor_macros"> - Procedural macros for the hyperactor framework</span>
+- <a id="link-hyperactor_multiprocess" href="rust-api/hyperactor_multiprocess/index.html">**hyperactor_multiprocess**</a><span id="desc-hyperactor_multiprocess"> - Multi-process support for hyperactor</span>
+- <a id="link-hyperactor_mesh" href="rust-api/hyperactor_mesh/index.html">**hyperactor_mesh**</a><span id="desc-hyperactor_mesh"> - Mesh networking for hyperactor clusters</span>
+- <a id="link-hyperactor_mesh_macros" href="rust-api/hyperactor_mesh_macros/index.html">**hyperactor_mesh_macros**</a><span id="desc-hyperactor_mesh_macros"> - Macros for hyperactor mesh functionality</span>
 
 ### CUDA and GPU Computing
-- <a id="link-cuda-sys" href="rust-api/cuda_sys/index.html" style="display: none;">**cuda-sys**</a><span id="desc-cuda-sys" style="display: none;"> - Low-level CUDA FFI bindings</span>
-- <a id="link-nccl-sys" href="rust-api/nccl_sys/index.html" style="display: none;">**nccl-sys**</a><span id="desc-nccl-sys" style="display: none;"> - NCCL (NVIDIA Collective Communications Library) bindings</span>
-- <a id="link-torch-sys" href="rust-api/torch_sys/index.html" style="display: none;">**torch-sys**</a><span id="desc-torch-sys" style="display: none;"> - PyTorch C++ API bindings for Rust</span>
-- <a id="link-monarch_tensor_worker" href="rust-api/monarch_tensor_worker/index.html" style="display: none;">**monarch_tensor_worker**</a><span id="desc-monarch_tensor_worker" style="display: none;"> - High-performance tensor processing worker</span>
+- <a id="link-cuda-sys" href="rust-api/cuda_sys/index.html">**cuda-sys**</a><span id="desc-cuda-sys"> - Low-level CUDA FFI bindings</span>
+- <a id="link-nccl-sys" href="rust-api/nccl_sys/index.html">**nccl-sys**</a><span id="desc-nccl-sys"> - NCCL (NVIDIA Collective Communications Library) bindings</span>
+- <a id="link-torch-sys" href="rust-api/torch_sys/index.html">**torch-sys**</a><span id="desc-torch-sys"> - PyTorch C++ API bindings for Rust</span>
+- <a id="link-monarch_tensor_worker" href="rust-api/monarch_tensor_worker/index.html">**monarch_tensor_worker**</a><span id="desc-monarch_tensor_worker"> - High-performance tensor processing worker</span>
 
 ### System and Utilities
-- <a id="link-controller" href="rust-api/controller/index.html" style="display: none;">**controller**</a><span id="desc-controller" style="display: none;"> - System controller and orchestration</span>
-- <a id="link-hyper" href="rust-api/hyper/index.html" style="display: none;">**hyper**</a><span id="desc-hyper" style="display: none;"> - HTTP utilities and web service support</span>
-- <a id="link-ndslice" href="rust-api/ndslice/index.html" style="display: none;">**ndslice**</a><span id="desc-ndslice" style="display: none;"> - N-dimensional array slicing and manipulation</span>
+- <a id="link-controller" href="rust-api/controller/index.html">**controller**</a><span id="desc-controller"> - System controller and orchestration</span>
+- <a id="link-hyper" href="rust-api/hyper/index.html">**hyper**</a><span id="desc-hyper"> - HTTP utilities and web service support</span>
+- <a id="link-ndslice" href="rust-api/ndslice/index.html">**ndslice**</a><span id="desc-ndslice"> - N-dimensional array slicing and manipulation</span>
 
-<div id="no-api-message" style="display: none; color: #666; font-style: italic;">
-    <p>Rust API documentation is being generated. Please check back later or refer to the source code.</p>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Map crate directory names (as generated by cargo doc) to their HTML link IDs
-    const crateMap = {
-        'hyperactor': 'hyperactor',
-        'hyperactor_macros': 'hyperactor_macros',
-        'hyperactor_multiprocess': 'hyperactor_multiprocess',
-        'hyperactor_mesh': 'hyperactor_mesh',
-        'hyperactor_mesh_macros': 'hyperactor_mesh_macros',
-        'cuda_sys': 'cuda-sys',
-        'nccl_sys': 'nccl-sys',
-        'torch_sys': 'torch-sys',
-        'monarch_tensor_worker': 'monarch_tensor_worker',
-        'controller': 'controller',
-        'hyper': 'hyper',
-        'ndslice': 'ndslice'
-    };
-
-    let availableCrates = 0;
-    let totalChecked = 0;
-
-    // Function to check if a crate's documentation exists
-    function checkCrate(crateName, crateId) {
-        return fetch(`rust-api/${crateName}/index.html`, { method: 'HEAD' })
-            .then(response => {
-                totalChecked++;
-                if (response.ok) {
-                    availableCrates++;
-                    // Show the link and description for this crate
-                    const link = document.getElementById(`link-${crateId}`);
-                    const desc = document.getElementById(`desc-${crateId}`);
-                    if (link) {
-                        link.style.display = 'inline';
-                        console.log(`Showing link for ${crateId}`);
-                    }
-                    if (desc) desc.style.display = 'inline';
-                    return true;
-                } else {
-                    console.log(`Documentation not found for ${crateName} (${response.status})`);
-                }
-                return false;
-            })
-            .catch(err => {
-                totalChecked++;
-                console.log(`Error checking ${crateName}:`, err);
-                return false;
-            });
-    }
-
-    // Check for main index.html
-    fetch('rust-api/index.html', { method: 'HEAD' })
-        .then(response => {
-            if (response.ok) {
-                document.getElementById('main-api-link').style.display = 'inline-block';
-                console.log('Main API index found');
-            } else {
-                console.log('Main API index not found');
-            }
-        })
-        .catch(err => {
-            console.log('Error checking main index:', err);
-        });
-
-    // Check all crates
-    const checkPromises = Object.entries(crateMap).map(([crateName, crateId]) =>
-        checkCrate(crateName, crateId)
-    );
-
-    Promise.all(checkPromises)
-        .then(() => {
-            document.getElementById('loading-message').style.display = 'none';
-
-            console.log(`Found ${availableCrates} available crates out of ${Object.keys(crateMap).length}`);
-
-            if (availableCrates === 0) {
-                document.getElementById('no-api-message').style.display = 'block';
-                console.log('No API documentation found, showing fallback message');
-            }
-        });
-
-    // Fallback: Show all links after 5 seconds if JavaScript fails
-    setTimeout(() => {
-        if (document.getElementById('loading-message').style.display !== 'none') {
-            document.getElementById('loading-message').style.display = 'none';
-
-            // Show all links as fallback
-            Object.values(crateMap).forEach(crateId => {
-                const link = document.getElementById(`link-${crateId}`);
-                const desc = document.getElementById(`desc-${crateId}`);
-                if (link) link.style.display = 'inline';
-                if (desc) desc.style.display = 'inline';
-            });
-
-            document.getElementById('main-api-link').style.display = 'inline-block';
-            console.log('Fallback: showing all links after timeout');
-        }
-    }, 5000);
-});
-</script>
+<!-- Static links are shown by default since documentation exists -->
 
 ## Architecture Overview
 
