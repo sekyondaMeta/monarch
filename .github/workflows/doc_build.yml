@@ -16,7 +16,7 @@ jobs:
     name: Build and Deploy Documentation
     uses: pytorch/test-infra/.github/workflows/linux_job_v2.yml@main
     with:
-      timeout: 120
+      timeout-minutes: 120
       runner: linux.g5.4xlarge.nvidia.gpu
       gpu-arch-type: cuda
       gpu-arch-version: "12.6"
