@@ -74,6 +74,7 @@ fut: Future[int] = counter.get_value.call_one()
 value: int = fut.get()
 
 print(f"Counter value: {value}")
+# Output: Counter value: 0
 
 # %%
 # Here we invoked the get_value message, returning 0, the current value of the Counter.
@@ -156,6 +157,7 @@ print(hosts.extent)
 
 # An extent is the logical shape of a mesh. It is an ordered map, specifying the size of
 # each dimension in the mesh.
+# Output: {'hosts': 2, 'gpus': 4}  # Example output
 
 
 # %%
@@ -180,6 +182,7 @@ trainers = trainer_procs.spawn("trainer", Trainer)
 # Do one training step and wait for all to finish it
 
 print(trainers.step.call().get())
+# Output: ['Trainer {"hosts": 0, "gpus": 0} taking a step.', 'Trainer {"hosts": 0, "gpus": 1} taking a step.', ...]
 
 # %%
 # Actor and Process References
