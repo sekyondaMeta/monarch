@@ -74,6 +74,7 @@ fut: Future[int] = counter.get_value.call_one()
 value: int = fut.get()
 
 print(f"Counter value: {value}")
+# %%
 # Output: Counter value: 0
 
 # %%
@@ -157,6 +158,7 @@ print(hosts.extent)
 
 # An extent is the logical shape of a mesh. It is an ordered map, specifying the size of
 # each dimension in the mesh.
+# %%
 # Output: {'hosts': 2, 'gpus': 4}  # Example output
 
 
