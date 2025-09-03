@@ -75,7 +75,7 @@ value: int = fut.get()
 
 print(f"Counter value: {value}")
 # %%
-# Output: Counter value: 0
+Counter value: 0
 
 # %%
 # Here we invoked the get_value message, returning 0, the current value of the Counter.
@@ -159,7 +159,7 @@ print(hosts.extent)
 # An extent is the logical shape of a mesh. It is an ordered map, specifying the size of
 # each dimension in the mesh.
 # %%
-# Output: {'hosts': 2, 'gpus': 4}  # Example output
+{'hosts': 2, 'gpus': 4}  # Example output
 
 
 # %%
