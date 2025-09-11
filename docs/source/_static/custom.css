@@ -1,0 +1,60 @@
+/* Custom CSS to hide PyTorch branding while keeping the theme */
+
+/* Hide PyTorch header/banner elements */
+.pytorch-header,
+.pytorch-banner,
+.header-banner,
+.announcement-banner {
+    display: none !important;
+}
+
+/* Hide PyTorch footer elements */
+.pytorch-footer,
+.footer-pytorch,
+.pytorch-branding {
+    display: none !important;
+}
+
+/* Hide PyTorch logo in navbar if present */
+.navbar-brand img[src*="pytorch"],
+.navbar-brand img[alt*="PyTorch"],
+.logo img[src*="pytorch"] {
+    display: none !important;
+}
+
+/* Hide any PyTorch trademark or copyright notices */
+.pytorch-trademark,
+.pytorch-copyright,
+[class*="pytorch-"]:not(.pytorch-sphinx-theme):not([class*="pytorch-sphinx-theme"]) {
+    display: none !important;
+}
+
+/* Hide elements with PyTorch text content */
+a[href*="pytorch.org"]:not([href*="monarch"]),
+.footer-links a[href*="pytorch.org"]:not([href*="monarch"]) {
+    display: none !important;
+}
+
+/* Style adjustments for remaining elements */
+.navbar {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Ensure footer doesn't have PyTorch styling remnants */
+.footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #e5e5e5;
+}
+
+/* Hide any promotional banners or notifications */
+.notification-banner,
+.promo-banner,
+[class*="banner"]:not(.sphinx-gallery-mini-banner) {
+    display: none !important;
+}
+
+/* Hide PyTorch-specific navigation elements */
+.pytorch-nav,
+.pytorch-menu {
+    display: none !important;
+}

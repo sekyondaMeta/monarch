@@ -67,30 +67,21 @@ sys.path.insert(0, os.path.abspath("_ext"))  # Add our custom extensions
 html_theme = "pytorch_sphinx_theme2"
 html_theme_path = [pytorch_sphinx_theme2.get_html_theme_path()]
 
-ogp_site_url = "http://pytorch.org/monarch"
-ogp_image = "https://pytorch.org/assets/images/social-share.jpg"
+ogp_site_url = "https://github.com/meta-pytorch/monarch"
+ogp_image = "https://github.com/meta-pytorch/monarch/raw/main/docs/source/_static/monarch-social.jpg"
 
 html_theme_options = {
     "navigation_with_keys": False,
-    "analytics_id": "GTM-T8XT4PS",
     "logo": {
-        "text": "",
+        "text": "Monarch",
+        "image_light": "",
+        "image_dark": "",
     },
     "icon_links": [
-        {
-            "name": "X",
-            "url": "https://x.com/PyTorch",
-            "icon": "fa-brands fa-x-twitter",
-        },
         {
             "name": "GitHub",
             "url": "https://github.com/meta-pytorch/monarch",
             "icon": "fa-brands fa-github",
-        },
-        {
-            "name": "Discourse",
-            "url": "https://dev-discuss.pytorch.org/",
-            "icon": "fa-brands fa-discourse",
         },
         {
             "name": "PyPi",
@@ -100,6 +91,7 @@ html_theme_options = {
     ],
     "use_edit_page_button": True,
     "navbar_center": "navbar-nav",
+    "show_navbar_depth": 2,
 }
 
 theme_variables = pytorch_sphinx_theme2.get_theme_variables()
@@ -117,9 +109,10 @@ html_context = {
     "feedback_url": "https://github.com/meta-pytorch/monarch",
     "github_version": "main",
     "doc_path": "docs/source",
-    "library_links": theme_variables.get("library_links", []),
-    "community_links": theme_variables.get("community_links", []),
-    "language_bindings_links": html_theme_options.get("language_bindings_links", []),
+    # Remove PyTorch-specific links that might show in footer
+    "library_links": [],
+    "community_links": [],
+    "language_bindings_links": [],
 }
 
 # Enable MyST extensions for markdown files including those in books
@@ -137,6 +130,7 @@ exclude_patterns = []  # Reset exclude_patterns to ensure books are included
 
 html_extra_path = ["../../target/doc"]
 html_static_path = ["_static"]
+html_css_files = ["custom.css"]
 
 # Configure MyST-Parser to find markdown files in the books directory
 myst_update_mathjax = False
