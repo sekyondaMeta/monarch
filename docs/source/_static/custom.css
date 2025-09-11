@@ -1,60 +1,77 @@
-/* Custom CSS to hide PyTorch branding while keeping the theme */
+/* Custom CSS to hide PyTorch branding while preserving content */
 
-/* Hide PyTorch header/banner elements */
+/* Hide PyTorch-specific header elements */
 .pytorch-header,
 .pytorch-banner,
-.header-banner,
-.announcement-banner {
+.header-banner {
     display: none !important;
 }
 
-/* Hide PyTorch footer elements */
+/* Hide PyTorch-specific footer elements */
 .pytorch-footer,
-.footer-pytorch,
-.pytorch-branding {
+.footer-pytorch {
     display: none !important;
 }
 
-/* Hide PyTorch logo in navbar if present */
-.navbar-brand img[src*="pytorch"],
-.navbar-brand img[alt*="PyTorch"],
-.logo img[src*="pytorch"] {
+/* Hide PyTorch logo images */
+img[src*="pytorch"]:not([src*="monarch"]),
+img[alt*="PyTorch"]:not([alt*="monarch"]) {
     display: none !important;
 }
 
-/* Hide any PyTorch trademark or copyright notices */
+/* Hide links to pytorch.org that don't relate to monarch */
+a[href*="pytorch.org"]:not([href*="monarch"]) {
+    display: none !important;
+}
+
+/* Hide specific PyTorch text content */
 .pytorch-trademark,
-.pytorch-copyright,
-[class*="pytorch-"]:not(.pytorch-sphinx-theme):not([class*="pytorch-sphinx-theme"]) {
+.pytorch-copyright {
     display: none !important;
 }
 
-/* Hide elements with PyTorch text content */
-a[href*="pytorch.org"]:not([href*="monarch"]),
-.footer-links a[href*="pytorch.org"]:not([href*="monarch"]) {
-    display: none !important;
-}
-
-/* Style adjustments for remaining elements */
+/* Style adjustments */
 .navbar {
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #dee2e6;
 }
 
-/* Ensure footer doesn't have PyTorch styling remnants */
 .footer {
     background-color: #f8f9fa;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #dee2e6;
+    padding: 1rem 0;
 }
 
-/* Hide any promotional banners or notifications */
-.notification-banner,
-.promo-banner,
-[class*="banner"]:not(.sphinx-gallery-mini-banner) {
-    display: none !important;
+/* Ensure main content area is visible */
+.bd-main {
+    display: block !important;
 }
 
-/* Hide PyTorch-specific navigation elements */
-.pytorch-nav,
-.pytorch-menu {
-    display: none !important;
+.bd-content {
+    display: block !important;
+}
+
+.bd-article {
+    display: block !important;
+}
+
+.bd-page {
+    display: block !important;
+}
+
+/* Ensure sidebar navigation is visible */
+.bd-sidebar {
+    display: block !important;
+}
+
+/* Ensure article content is visible */
+article {
+    display: block !important;
+}
+
+main {
+    display: block !important;
+}
+
+.content {
+    display: block !important;
 }

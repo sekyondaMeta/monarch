@@ -1,0 +1,23 @@
+/* Minimal CSS - only hide specific PyTorch branding */
+
+/* Hide PyTorch social media links in header */
+.navbar .icon-links a[href*="x.com/PyTorch"],
+.navbar .icon-links a[href*="dev-discuss.pytorch.org"] {
+    display: none !important;
+}
+
+/* Hide PyTorch analytics/tracking */
+[data-analytics*="pytorch"] {
+    display: none !important;
+}
+
+/* Hide footer PyTorch links if they exist */
+.footer a[href*="pytorch.org"]:not([href*="monarch"]) {
+    display: none !important;
+}
+
+/* Ensure all content containers remain visible */
+body, html, main, .container, .row, .col {
+    display: block !important;
+    visibility: visible !important;
+}
