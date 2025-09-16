@@ -77,8 +77,8 @@ html_theme_options = {
     "analytics_id": "G-FLDB7SHJV2",
     "logo": {
         "text": "",
-        "image_light": "_static/torch-monarch-icons.svg",
-        "image_dark": "_static/torch-monarch-icons.svg",
+        "image_light": "_static/torch-monarch-logo.svg",
+        "image_dark": "_static/torch-monarch-logo.svg",
     },
     "icon_links": [
         {
