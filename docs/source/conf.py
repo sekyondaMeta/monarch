@@ -75,10 +75,7 @@ html_theme_options = {
     "show_lf_header": False,
     "show_lf_footer": False,
     "analytics_id": "G-FLDB7SHJV2",
-    "logo": {
-        "text": "",
-        "image_light": "_static/torch-monarch-logo.svg
-    },
+    "logo": {"text": "", "image_light": "_static/torch-monarch-logo.svg"},
     "icon_links": [
         {
             "name": "X",
