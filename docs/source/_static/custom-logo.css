@@ -4,7 +4,7 @@
 [data-bs-theme="dark"] .navbar-brand img,
 [data-theme="dark"] .navbar-brand img,
 .theme-dark .navbar-brand img {
-    background-color: #f8f9fa;
+    background-color: #ced4da;
     border-radius: 24px;
     padding: 10px 20px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
@@ -15,7 +15,7 @@
 [data-bs-theme="dark"] .navbar-brand .logo img,
 [data-theme="dark"] .navbar-brand .logo img,
 .theme-dark .navbar-brand .logo img {
-    background-color: #f8f9fa;
+    background-color: #ced4da;
     border-radius: 24px;
     padding: 10px 20px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
