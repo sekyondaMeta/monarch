@@ -1,0 +1,45 @@
+/* Custom styling for Monarch logo with white pill background in dark mode */
+
+/* Target the logo in dark theme only */
+[data-bs-theme="dark"] .navbar-brand img,
+[data-theme="dark"] .navbar-brand img,
+.theme-dark .navbar-brand img {
+    background-color: white;
+    border-radius: 20px;
+    padding: 8px 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Alternative selector for PyTorch Sphinx Theme2 specific classes */
+[data-bs-theme="dark"] .navbar-brand .logo img,
+[data-theme="dark"] .navbar-brand .logo img,
+.theme-dark .navbar-brand .logo img {
+    background-color: white;
+    border-radius: 20px;
+    padding: 8px 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Ensure the logo maintains proper dimensions */
+[data-bs-theme="dark"] .navbar-brand img,
+[data-theme="dark"] .navbar-brand img,
+.theme-dark .navbar-brand img,
+[data-bs-theme="dark"] .navbar-brand .logo img,
+[data-theme="dark"] .navbar-brand .logo img,
+.theme-dark .navbar-brand .logo img {
+    max-height: 40px;
+    width: auto;
+}
+
+/* Optional: Add a subtle hover effect */
+[data-bs-theme="dark"] .navbar-brand:hover img,
+[data-theme="dark"] .navbar-brand:hover img,
+.theme-dark .navbar-brand:hover img,
+[data-bs-theme="dark"] .navbar-brand:hover .logo img,
+[data-theme="dark"] .navbar-brand:hover .logo img,
+.theme-dark .navbar-brand:hover .logo img {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
