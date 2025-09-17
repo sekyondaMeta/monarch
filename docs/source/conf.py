@@ -141,7 +141,6 @@ exclude_patterns = []  # Reset exclude_patterns to ensure books are included
 
 html_extra_path = ["../../target/doc"]
 html_static_path = ["_static"]
-# html_css_files = ["custom-logo.css"]
 
 # Configure MyST-Parser to find markdown files in the books directory
 myst_update_mathjax = False
