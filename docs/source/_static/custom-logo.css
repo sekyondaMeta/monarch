@@ -1,13 +1,13 @@
-/* Custom styling for Monarch logo with white pill background in dark mode */
+/* Custom styling for Monarch logo with darker pill background in dark mode */
 
 /* Target the logo in dark theme only */
 [data-bs-theme="dark"] .navbar-brand img,
 [data-theme="dark"] .navbar-brand img,
 .theme-dark .navbar-brand img {
-    background-color: white;
-    border-radius: 20px;
-    padding: 8px 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+    border-radius: 24px;
+    padding: 10px 20px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
 }
 
@@ -15,22 +15,23 @@
 [data-bs-theme="dark"] .navbar-brand .logo img,
 [data-theme="dark"] .navbar-brand .logo img,
 .theme-dark .navbar-brand .logo img {
-    background-color: white;
-    border-radius: 20px;
-    padding: 8px 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+    border-radius: 24px;
+    padding: 10px 20px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
 }
 
-/* Ensure the logo maintains proper dimensions */
+/* Make the logo bigger in dark mode for better visibility */
 [data-bs-theme="dark"] .navbar-brand img,
 [data-theme="dark"] .navbar-brand img,
 .theme-dark .navbar-brand img,
 [data-bs-theme="dark"] .navbar-brand .logo img,
 [data-theme="dark"] .navbar-brand .logo img,
 .theme-dark .navbar-brand .logo img {
-    max-height: 40px;
+    max-height: 48px;
     width: auto;
+    transform: scale(1.1);
 }
 
 /* Optional: Add a subtle hover effect */
