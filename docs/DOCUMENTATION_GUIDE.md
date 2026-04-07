@@ -26,11 +26,15 @@ The generated documentation will be available in `docs/build/html/`.
 
 ### CI/CD Builds
 
-The documentation is automatically built and deployed via GitHub Actions:
+The documentation is automatically built and deployed via GitHub Actions (`.github/workflows/doc_build.yml`):
 
-- **Trigger**: On pushes to main branch and pull requests
-- **Location**: `.github/workflows/doc_build.yml`
-- **Process**: Full environment setup → Monarch build → Documentation generation → Deployment
+| Trigger | Version | Deploys? |
+|---------|---------|----------|
+| Push to `docs/*` branch (e.g. `docs/v0.5.0`) | Extracted from branch name |  Yes |
+| Manual `workflow_dispatch` with `version` input | User-provided |  Yes |
+| Pull request | `dev` |  Build only |
+
+Pre-release versions (e.g. `v0.4.0rc1`, `v1.0.0beta2`) are detected and skipped during deploy.
 
 ### Development Builds
 
@@ -231,11 +235,118 @@ The documentation build process includes several steps:
 
 ### CI/CD Integration
 
-The documentation is automatically built and deployed via GitHub Actions (see `.github/workflows/doc_build.yml`):
+The documentation is automatically built and deployed via GitHub Actions (see `.github/workflows/doc_build.yml`). See [Versioning & Deployment](#versioning--deployment) below for full details.
 
-- **Trigger**: On pushes to main branch and pull requests
-- **Process**: Full environment setup, Monarch build, documentation generation
-- **Output**: Deployed to documentation hosting service
+## Versioning & Deployment
+
+### How Versioned Docs Work
+
+Documentation is deployed to **GitHub Pages** via the `gh-pages` branch at `https://meta-pytorch.org/monarch/`. Each release gets its own directory, and a `stable` symlink always points to the latest stable release.
+
+```
+gh-pages branch:
+├── index.html          ← redirects to stable/
+├── versions.json       ← powers the version switcher dropdown
+├── stable              ← symlink → v0.5.0 (latest stable)
+├── .nojekyll
+├── v0.5.0/             ← latest stable release docs
+├── v0.4.0/             ← previous release docs
+└── v0.3.0/
+```
+
+**Key URLs:**
+- `https://meta-pytorch.org/monarch/` — redirects to `/stable/`
+- `https://meta-pytorch.org/monarch/stable/` — always serves the latest stable release
+- `https://meta-pytorch.org/monarch/v0.5.0/` — specific version (permanent)
+
+### Release Docs Pipeline
+
+When a stable release is published, the full pipeline is:
+
+```
+1. publish_release.yml runs for vX.Y.Z
+   └─ Creates branch: docs/vX.Y.Z and pushes to origin
+
+2. doc_build.yml triggers on docs/vX.Y.Z branch push
+   ├─ Build job (GPU runner):
+   │   ├─ Builds Monarch from source with Rust bindings
+   │   ├─ Runs cargo doc --workspace --no-deps
+   │   ├─ Runs make html (Sphinx)
+   │   └─ Uploads docs artifact
+   └─ Deploy job:
+       ├─ Checks out gh-pages branch
+       ├─ Copies built HTML into gh-pages/vX.Y.Z/
+       ├─ Updates versions.json (marks vX.Y.Z as preferred/stable)
+       ├─ Creates symlink: gh-pages/stable → vX.Y.Z
+       ├─ Writes gh-pages/index.html redirecting to stable/
+       └─ Commits and pushes to gh-pages
+```
+
+### How the Stable Symlink Works
+
+The `stable` symlink is a filesystem symlink committed into Git on the `gh-pages` branch. GitHub Pages respects Git symlinks, so `https://meta-pytorch.org/monarch/stable/` transparently serves the content from the version directory it points to.
+
+The symlink is **updated automatically** on every versioned deploy. The deploy job:
+
+1. Rebuilds `versions.json` with all known versions, sorted by semver descending
+2. Identifies the highest non-pre-release version as the latest stable
+3. Removes the old symlink and creates a new one pointing to the latest stable
+4. Updates the root `index.html` to redirect to `stable/`
+
+This means when a new release (e.g. `v1.0.0`) is deployed, the symlink automatically swings from the previous stable (e.g. `v0.5.0`) to the new one. No manual intervention is required.
+
+This approach mirrors the pattern used by PyTorch core (`pytorch.org/docs/stable/`) and other ecosystem libraries (TorchVision, TorchAudio, ExecuTorch).
+
+### Version Switcher
+
+The version dropdown in the docs navbar is powered by `versions.json`, which is dynamically generated at deploy time. The configuration in `conf.py`:
+
+```python
+"switcher": {
+    "json_url": "https://meta-pytorch.org/monarch/versions.json",
+    "version_match": docs_version,
+},
+```
+
+Each entry in `versions.json` has:
+- `name` — display label (e.g. `"v0.5.0 (stable)"`)
+- `version` — version string for matching
+- `url` — link to that version's docs
+- `preferred` — `true` only for the latest stable release
+
+### Version Detection
+
+The `DOCS_VERSION` environment variable controls what version is built. It is set automatically based on the trigger:
+
+| Trigger | `DOCS_VERSION` value |
+|---------|---------------------|
+| `docs/v0.5.0` branch push | `v0.5.0` (from branch name) |
+| Manual dispatch with `version: v0.5.0` | `v0.5.0` (from input) |
+| Scheduled build (currently disabled) | `nightly` |
+| Pull request / other | `dev` |
+
+In `conf.py`, this value is read via `os.getenv("DOCS_VERSION", "dev")` and used for Sphinx's `version` and `release` fields, and for matching the version switcher.
+
+### Pre-release Handling
+
+Pre-release versions (matching the pattern `v0.4.0rc1`, `v1.0.0beta2`, etc.) are automatically **skipped during deploy** — the build runs but the deploy step exits early. This prevents release candidates from appearing in the public docs.
+
+### Manual Deployment
+
+To manually trigger a docs deploy for a specific version:
+
+```bash
+# Via GitHub Actions workflow dispatch
+gh workflow run doc_build.yml -f version=v0.5.0
+```
+
+### Updating Docs for an Existing Release
+
+To fix docs for an already-published release:
+
+1. Cherry-pick or commit fixes to the `docs/vX.Y.Z` branch
+2. Push the branch — `doc_build.yml` triggers automatically
+3. The deploy job overwrites `gh-pages/vX.Y.Z/` with the updated build
 
 ## Configuration Details
 
