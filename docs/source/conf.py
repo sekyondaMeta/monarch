@@ -159,7 +159,7 @@ books_path = os.path.abspath("../../books")
 # Configure Sphinx to include the books directory
 exclude_patterns = []  # Reset exclude_patterns to ensure books are included
 
-html_baseurl = "https://meta-pytorch.org/monarch/"
+html_baseurl = "https://meta-pytorch.org/monarch/stable/"
 
 sitemap_locales = [None]
 sitemap_excludes = [
